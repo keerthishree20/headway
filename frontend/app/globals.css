@@ -1,0 +1,131 @@
+@import "tailwindcss";
+@import "leaflet/dist/leaflet.css";
+
+/* Design tokens. Light is the base definition; dark is a selected set of
+   steps for the dark surface, not an automatic inversion. */
+:root {
+  color-scheme: light;
+
+  --surface-0: #f4f3f0;
+  --surface-1: #fcfcfb;
+  --surface-2: #eeede9;
+  --border: #dcdad4;
+  --border-strong: #c4c1b8;
+
+  --text-primary: #0b0b0b;
+  --text-secondary: #52514e;
+  --text-muted: #7d7b74;
+
+  /* Categorical slots 1-2: used in two separate single-series charts. */
+  --series-1: #2a78d6;
+  --series-2: #eb6834;
+
+  /* Status palette - fixed, never themed, always paired with a label. */
+  --status-good: #0ca30c;
+  --status-warning: #fab219;
+  --status-serious: #ec835a;
+  --status-critical: #d03b3b;
+
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    color-scheme: dark;
+
+    --surface-0: #121211;
+    --surface-1: #1a1a19;
+    --surface-2: #232322;
+    --border: #33332f;
+    --border-strong: #4a4a45;
+
+    --text-primary: #ffffff;
+    --text-secondary: #c3c2b7;
+    --text-muted: #918f85;
+
+    --series-1: #3987e5;
+    --series-2: #d95926;
+
+  }
+}
+
+:root[data-theme="dark"] {
+  color-scheme: dark;
+
+  --surface-0: #121211;
+  --surface-1: #1a1a19;
+  --surface-2: #232322;
+  --border: #33332f;
+  --border-strong: #4a4a45;
+
+  --text-primary: #ffffff;
+  --text-secondary: #c3c2b7;
+  --text-muted: #918f85;
+
+  --series-1: #3987e5;
+  --series-2: #d95926;
+
+}
+
+html,
+body {
+  background: var(--surface-0);
+  color: var(--text-primary);
+  font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+.tabular {
+  font-variant-numeric: tabular-nums;
+}
+
+/* Leaflet paints its own white ground; keep it on our surface so the map
+   never flashes white while tiles load. */
+.leaflet-container {
+  background: var(--surface-2);
+  font-family: inherit;
+}
+
+.leaflet-popup-content-wrapper,
+.leaflet-popup-tip {
+  background: var(--surface-1);
+  color: var(--text-primary);
+  border: 1px solid var(--border);
+  box-shadow: 0 4px 16px rgb(0 0 0 / 0.18);
+}
+
+.leaflet-control-attribution {
+  background: var(--surface-1) !important;
+  color: var(--text-muted) !important;
+}
+
+.leaflet-control-attribution a {
+  color: var(--text-secondary) !important;
+}
+
+.leaflet-bar a {
+  background: var(--surface-1) !important;
+  color: var(--text-primary) !important;
+  border-color: var(--border) !important;
+}
+
+@keyframes pulse-ring {
+  0% {
+    opacity: 0.9;
+  }
+  50% {
+    opacity: 0.35;
+  }
+  100% {
+    opacity: 0.9;
+  }
+}
+
+.live-dot {
+  animation: pulse-ring 2s ease-in-out infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .live-dot {
+    animation: none;
+  }
+}
