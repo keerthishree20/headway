@@ -1,5 +1,7 @@
 # Headway — real-time transit reliability monitor
 
+[![tests](https://github.com/keerthishree20/headway/actions/workflows/tests.yml/badge.svg)](https://github.com/keerthishree20/headway/actions/workflows/tests.yml)
+
 Live GTFS-Realtime vehicle positions, streamed over a WebSocket, with bus
 bunching and ghost vehicles detected as they happen.
 
